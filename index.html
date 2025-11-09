@@ -1,521 +1,342 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Salar Ahmed Portfolio - BS IT & Web Dev Intern</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<style>
-  /* Reset and base */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #000000 0%, #0a1f44 100%);
-    color: #e0e6e9;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    scroll-behavior: smooth;
-  }
-  a {
-    color: #4db6ac;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  a:hover, a:focus {
-    color: #00897b;
-    outline: none;
-  }
-  h1, h2, h3, h4 {
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-  h1 {
-    font-size: 3rem;
-    color: #4db6ac;
-  }
-  h2 {
-    font-size: 2rem;
-    border-bottom: 3px solid #00897b;
-    padding-bottom: 8px;
-    max-width: max-content;
-    margin-bottom: 24px;
-  }
-  p {
-    font-size: 1rem;
-    color: #cfd8dc;
-    max-width: 720px;
-  }
-  .container {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 40px 24px 80px 24px;
-  }
-  /* Header */
-  header {
-    background-color: rgba(10, 31, 68, 0.95);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.75);
-  }
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 16px 24px;
-  }
-  .logo {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: #4db6ac;
-    user-select: none;
-  }
-  nav {
-    display: flex;
-    gap: 32px;
-  }
-  nav a {
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 0;
-    position: relative;
-  }
-  nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 3px;
-    background: #00897b;
-    border-radius: 2px;
-    transition: width 0.3s ease;
-  }
-  nav a:hover::after,
-  nav a:focus::after,
-  nav a.active::after {
-    width: 100%;
-  }
-  /* Hamburger */
-  .mobile-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #4db6ac;
-    font-size: 32px;
-    padding: 4px;
-  }
-  /* Mobile nav */
-  .nav-mobile {
-    display: none;
-    flex-direction: column;
-    background-color: rgba(10, 31, 68, 0.98);
-  }
-  .nav-mobile a {
-    padding: 12px 24px;
-    border-bottom: 1px solid #0d3b6f;
-  }
-  .nav-mobile a:last-child {
-    border-bottom: none;
-  }
-  /* Sections */
-  section {
-    padding: 64px 0;
-  }
-  /* About Me */
-  #about .about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  #about img {
-    border-radius: 16px;
-    width: 100%;
-    max-width: 320px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.9);
-  }
-  .social-links {
-    margin-top: 24px;
-    display: flex;
-    gap: 24px;
-  }
-  .social-links a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    color: #4db6ac;
-    border: 2px solid transparent;
-    padding: 10px 14px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-  }
-  .social-links a:hover,
-  .social-links a:focus {
-    background-color: #00897b;
-    color: #e0f2f1;
-    border-color: #4db6ac;
-    outline: none;
-  }
-  .material-icons.md-18 { font-size: 18px; }
-  .material-icons.md-24 { font-size: 24px; }
-  /* Skills */
-  #skills .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    max-width: 720px;
-  }
-  .skill {
-    background: rgba(77, 182, 172, 0.15);
-    padding: 12px 20px;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #4db6ac;
-    box-shadow: 0 4px 10px rgba(77, 182, 172, 0.4);
-    transition: background-color 0.3s ease;
-  }
-  .skill:hover, .skill:focus {
-    background: #00897b;
-    color: #e0f2f1;
-    outline: none;
-    box-shadow: 0 6px 18px rgba(0, 137, 123, 0.7);
-  }
-  /* Projects */
-  #projects .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 32px;
-  }
-  .project-card {
-    background: rgba(10, 31, 68, 0.9);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.85);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .project-card:hover, .project-card:focus-within {
-    transform: translateY(-8px);
-    box-shadow: 0 22px 48px rgba(0,137,123,0.85);
-    outline: none;
-  }
-  .project-image {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-bottom: 2px solid #00897b;
-  }
-  .project-content {
-    padding: 24px;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .project-title {
-    font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-    color: #4db6ac;
-  }
-  .project-description {
-    flex-grow: 1;
-    font-size: 0.95rem;
-    color: #cfd8dc;
-    margin-bottom: 16px;
-  }
-  .project-links {
-    margin-top: auto;
-  }
-  .project-links a {
-    color: #00897b;
-    font-weight: 600;
-    text-decoration: underline;
-  }
-  .project-links a:hover, .project-links a:focus {
-    color: #004d40;
-    outline: none;
-  }
-  /* Education */
-  #education ul {
-    list-style: none;
-    max-width: 720px;
-    padding-left: 0;
-  }
-  #education li {
-    background: rgba(77, 182, 172, 0.12);
-    margin-bottom: 16px;
-    padding: 16px 24px;
-    border-radius: 12px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
-    color: #cfd8dc;
-  }
-  #education li strong {
-    color: #00897b;
-  }
-  /* Contact */
-  #contact {
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #b2dfdb;
-  }
-  input, textarea {
-    font-family: inherit;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    background: rgba(77, 182, 172, 0.15);
-    color: #e0f2f1;
-    resize: vertical;
-    transition: background-color 0.3s ease;
-  }
-  input:focus, textarea:focus {
-    background: #004d40;
-    color: #e0f2f1;
-    outline: none;
-  }
-  button[type="submit"] {
-    background: #4db6ac;
-    color: #004d40;
-    font-weight: 700;
-    padding: 14px 24px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-  }
-  button[type="submit"]:hover, button[type="submit"]:focus {
-    background: #00897b;
-    outline: none;
-  }
-  /* Footer */
-  footer {
-    background-color: rgba(10, 31, 68, 0.95);
-    color: #b2dfdb;
-    text-align: center;
-    padding: 24px 12px;
-    font-size: 0.9rem;
-    user-select: none;
-  }
-  /* Responsive */
-  @media (max-width: 768px) {
-    h1 { font-size: 2.25rem; }
-    #about .about-content {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      text-align: center;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salar Ahmed — Portfolio</title>
+  <meta name="description" content="Portfolio of Salar Ahmed — Web Developer & Data Scientist. HTML, CSS, JavaScript, React, Python, ML projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent1: linear-gradient(135deg,#7c3aed 0%, #06b6d4 100%);
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
     }
-    #about img {
-      margin: 0 auto;
-      max-width: 280px;
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:radial-gradient(1000px 400px at 10% 10%, rgba(124,58,237,0.06), transparent), radial-gradient(900px 350px at 90% 90%, rgba(6,182,212,0.03), transparent), var(--bg);}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:36px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:var(--accent1);display:grid;place-items:center;color:white;font-weight:800;box-shadow:0 6px 20px rgba(12,18,36,0.6)}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600}
+    nav a.active,nav a:hover{color:white;background:var(--glass)}
+    .cta{padding:8px 14px;background:linear-gradient(90deg,#06b6d4,#7c3aed);color:#041025;border-radius:10px;font-weight:700}
+
+    /* Mobile nav */
+    .mobile-toggle{display:none;background:transparent;border:0;color:var(--muted);font-size:20px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
+    .intro h1{margin:0;font-size:38px;line-height:1.03}
+    .intro h1 .name{background:linear-gradient(90deg,#fff 0%, #cfe9ff 40%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .intro p{color:var(--muted);margin:14px 0 18px}
+    .pill-list{display:flex;flex-wrap:wrap;gap:10px}
+    .pill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:22px;border-radius:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6);min-height:260px}
+    .hero-card h3{margin:0 0 10px}
+    .hero-avatar{height:120px;border-radius:12px;background:conic-gradient(from 180deg at 50% 50%, #7c3aed, #06b6d4);display:flex;align-items:center;justify-content:center;color:white;font-size:28px;font-weight:800}
+    .hero-avatar img{width:120px;height:120px;border-radius:12px;object-fit:cover;display:block}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Sections */
+    section{padding:44px 0;border-top:1px solid rgba(255,255,255,0.02)}
+    h2.section-title{display:flex;align-items:center;gap:12px;font-size:20px;margin:0 0 18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(2,6,23,0.6)}
+    .skill-bar{height:10px;background:var(--glass-2);border-radius:999px;overflow:hidden}
+    .skill-bar > i{display:block;height:100%;background:linear-gradient(90deg,#06b6d4,#7c3aed);border-radius:999px}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{display:flex;flex-direction:column;gap:12px}
+    .project .meta{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+    .project .actions{display:flex;gap:8px}
+    .btn{padding:8px 12px;border-radius:9px;background:var(--glass);font-weight:700}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    form input, form textarea{width:100%;padding:12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.05);color:#e6eef8}
+    form button{margin-top:10px;padding:10px 14px;border-radius:10px;border:0;font-weight:700}
+
+    footer{padding:36px 0;color:var(--muted);font-size:14px}
+
+    /* Animations */
+    .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+      .mobile-toggle{display:inline-block}
+      .contact-grid{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
     }
-    nav {
-      display: none;
+    @media (max-width:520px){
+      .grid-3{grid-template-columns:1fr}
+      .hero-avatar{height:96px}
     }
-    .mobile-toggle {
-      display: block;
-    }
-    .nav-mobile {
-      display: flex;
-    }
-  }
-</style>
+
+    /* Accessibility focus */
+    a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(124,58,237,0.18);outline-offset:3px}
+  </style>
 </head>
 <body>
-<header role="banner">
-  <div class="header-container">
-    <div class="logo" tabindex="0" aria-label="Salar Ahmed Portfolio logo">Salar Ahmed</div>
-    <nav role="navigation" aria-label="Primary" class="nav-desktop">
-      <a href="#about" class="nav-link" tabindex="0">About</a>
-      <a href="#skills" class="nav-link" tabindex="0">Skills</a>
-      <a href="#projects" class="nav-link" tabindex="0">Projects</a>
-      <a href="#education" class="nav-link" tabindex="0">Education</a>
-      <a href="#contact" class="nav-link" tabindex="0">Contact</a>
-    </nav>
-    <button class="mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation menu">&#xE5D2;</button>
-  </div>
-  <nav id="mobile-menu" class="nav-mobile" aria-label="Mobile Primary Navigation" hidden>
-    <a href="#about" tabindex="-1">About</a>
-    <a href="#skills" tabindex="-1">Skills</a>
-    <a href="#projects" tabindex="-1">Projects</a>
-    <a href="#education" tabindex="-1">Education</a>
-    <a href="#contact" tabindex="-1">Contact</a>
-  </nav>
-</header>
-<main>
-  <section id="about" aria-labelledby="about-title" tabindex="0">
-    <div class="container">
-      <h2 id="about-title">About Me</h2>
-      <div class="about-content">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtzI-k9SN-HSkvMsAG-_ekv2nc0iYQ_N76nA&amp;s" alt="Professional portrait of Salar Ahmed with confident expression, wearing smart casual clothing, dark professional background" />
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>SA</div>
         <div>
-          <h1>I am Salar Ahmed</h1>
-          <p>I am a 3rd year Bachelor of Science IT student at Shah Latif University. Passionate about web development and eager to grow my skills through an internship. I am dedicated, quick to learn, and deeply interested in creating modern, responsive, and accessible websites.</p>
-          <p>Currently preparing for my web development internship where I plan to apply my knowledge to real-world projects, enhance my programming skills, and contribute effectively to any team or company.</p>
-          <div class="social-links" aria-label="Social and professional links">
-            <a href="https://github.com/salarsain" target="_blank" rel="noopener" aria-label="GitHub profile of Salar Ahmed"><span class="material-icons md-18" aria-hidden="true">code</span>GitHub</a>
-            <a href="https://www.linkedin.com/in/salar-ahmed-697a111a6/" target="_blank" rel="noopener" aria-label="LinkedIn profile of Salar Ahmed"><span class="material-icons md-18" aria-hidden="true">business_center</span>LinkedIn</a>
-          </div>
+          <div style="font-weight:800">Salar Ahmed</div>
+          <div style="font-size:13px;color:var(--muted)">BS (IT) — Shah Abdul Latif University</div>
         </div>
       </div>
-    </div>
-  </section>
-  <section id="skills" aria-labelledby="skills-title" tabindex="0">
-    <div class="container">
-      <h2 id="skills-title">Skills</h2>
-      <div class="skills-list" role="list">
-        <span class="skill" role="listitem" tabindex="0">HTML5</span>
-        <span class="skill" role="listitem" tabindex="0">CSS3</span>
-        <span class="skill" role="listitem" tabindex="0">JavaScript</span>
-        <span class="skill" role="listitem" tabindex="0">Responsive Design</span>
-        <span class="skill" role="listitem" tabindex="0">Git &amp; GitHub</span>
-        <span class="skill" role="listitem" tabindex="0">Bootstrap</span>
-        <span class="skill" role="listitem" tabindex="0">React (Basic)</span>
-        <span class="skill" role="listitem" tabindex="0">Node.js (Basic)</span>
-        <span class="skill" role="listitem" tabindex="0">Python</span>
-        <span class="skill" role="listitem" tabindex="0">Data Science</span>
-      </div>
-    </div>
-  </section>
-  <section id="projects" aria-labelledby="projects-title" tabindex="0">
-    <div class="container">
-      <h2 id="projects-title">Projects</h2>
-      <div class="projects-grid">
-        <article class="project-card" tabindex="0" aria-label="Project: Data Analysis Dashboard">
-          <img class="project-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b53e6593-5974-4e95-af7a-c66fb112f81f.png" alt="Screenshot of data analysis dashboard showing charts and data visualization" />
-          <div class="project-content">
-            <h3 class="project-title">Data Analysis Dashboard</h3>
-            <p class="project-description">A data analysis dashboard project built to visualize and interpret complex datasets with interactive charts and filters.</p>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">View Code</a>
-              &amp;nbsp;|&amp;nbsp;
-              <a href="#" target="_blank" rel="noopener">Live Demo</a>
+
+      <nav aria-label="Main navigation">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="mobile-toggle" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+      <a class="cta" href="#contact">Hire Me</a>
+    </header>
+
+    <main>
+      <section id="home" class="hero" aria-labelledby="home-title">
+        <div class="intro fade-up" style="animation-delay:.05s">
+          <h1 id="home-title">Hi, I'm <span class="name">Salar Ahmed</span></h1>
+          <p>I am a 3rd-year <strong>BS Information Technology</strong> student at <strong>Shah Abdul Latif University</strong>. I build modern, responsive websites and AI/data-driven applications. Currently seeking internships and freelance opportunities in Web Development & Data Science.</p>
+
+          <div class="pill-list">
+            <span class="pill">Web Development</span>
+            <span class="pill">Data Science</span>
+            <span class="pill">Machine Learning</span>
+            <span class="pill">React.js</span>
+            <span class="pill">Python</span>
+            <span class="pill">SQL</span>
+          </div>
+
+          <div style="margin-top:20px;display:flex;gap:12px;align-items:center">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn" href="mailto:salarsain2456@gmail.com">Email Me</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <aside class="hero-card fade-up" style="animation-delay:.12s">
+          <div style="display:flex;gap:14px;align-items:center">
+            <div class="hero-avatar" aria-hidden><img src="https://media.licdn.com/dms/image/v2/D4D03AQGNNnAb16nU6Q/profile-displayphoto-crop_800_800/B4DZny4m2vH0AI-/0/1760716550247?e=1764201600&v=beta&t=vcX7JiCoHqJDCIjIODrsgEjGAy3AgpoSZ-jwgugUcDQ" alt="Salar Ahmed" loading="lazy"></div>
+            <div>
+              <h3 style="margin:0">Salar Ahmed</h3>
+              <div class="small">Web Developer & Data Scientist</div>
             </div>
           </div>
-        </article>
-        <article class="project-card" tabindex="0" aria-label="Project: Smoke Detector">
-          <img class="project-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4b286ce8-b84a-4b5d-aca0-af40f97cc922.png" alt="Image of a smoke detector prototype with sensors and microcontroller" />
-          <div class="project-content">
-            <h3 class="project-title">Smoke Detector</h3>
-            <p class="project-description">A smoke detector project integrating sensors and microcontroller to detect smoke and issue alerts effectively.</p>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">View Code</a>
-              &amp;nbsp;|&amp;nbsp;
-              <a href="#" target="_blank" rel="noopener">Live Demo</a>
+
+          <div style="margin-top:16px;color:var(--muted);font-size:14px">
+            <strong>Education:</strong> BS (IT), Shah Abdul Latif University<br>
+            <strong>Training:</strong> Saylani (AI/Data Science), PITP (Python & ML)<br>
+            <strong>Experience:</strong> WordPress Internship, freelance projects
+          </div>
+
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="pill" href="#skills">See Skills</a>
+            <a class="pill" href="#projects">See Projects</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title" class="section-title">About Me</h2>
+        <div class="card">
+          <p style="margin:0 0 8px">I’m passionate about building digital products that combine clean UI with data-driven intelligence. I enjoy building responsive websites using modern front-end frameworks and creating machine learning models that solve real problems.</p>
+          <p style="margin:0;color:var(--muted)"><strong>Interests:</strong> Web Development, AI & Data Science, UI/UX fundamentals, Project-based learning.</p>
+        </div>
+      </section>
+
+      <section id="skills" aria-labelledby="skills-title">
+        <h2 id="skills-title" class="section-title">Skills</h2>
+        <div class="grid-3">
+          <div class="card fade-up" style="animation-delay:.05s">
+            <h3>Programming & Data</h3>
+            <p class="small">Python, NumPy, Pandas, Scikit-Learn, Matplotlib, Seaborn</p>
+            <div style="margin-top:12px">
+              <div class="small">Python</div>
+              <div class="skill-bar" aria-hidden style="margin-bottom:8px"><i style="width:85%"></i></div>
+              <div class="small">Machine Learning</div>
+              <div class="skill-bar" aria-hidden style="margin-bottom:8px"><i style="width:70%"></i></div>
             </div>
           </div>
-        </article>
+
+          <div class="card fade-up" style="animation-delay:.12s">
+            <h3>Web Development</h3>
+            <p class="small">HTML5, CSS3, JavaScript (ES6+), React.js, Bootstrap, Tailwind (familiar)</p>
+            <div style="margin-top:12px">
+              <div class="small">Frontend</div>
+              <div class="skill-bar" aria-hidden style="margin-bottom:8px"><i style="width:80%"></i></div>
+              <div class="small">React.js</div>
+              <div class="skill-bar" aria-hidden style="margin-bottom:8px"><i style="width:75%"></i></div>
+            </div>
+          </div>
+
+          <div class="card fade-up" style="animation-delay:.18s">
+            <h3>Tools & Other</h3>
+            <p class="small">Git, GitHub, GitHub Copilot, Figma (basic), Canva, WordPress, SQL (MySQL/SQLite)</p>
+            <div style="margin-top:12px">
+              <div class="small">SQL & DB</div>
+              <div class="skill-bar" aria-hidden style="margin-bottom:8px"><i style="width:75%"></i></div>
+              <div class="small">Version control</div>
+              <div class="skill-bar" aria-hidden style="margin-bottom:8px"><i style="width:80%"></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 id="projects-title" class="section-title">Projects</h2>
+        <div class="projects-grid">
+
+          <article class="card project fade-up" style="animation-delay:.05s">
+            <h3>COVID-19 Detection (DL)</h3>
+            <div class="meta">Python • Deep Learning • CT / X-Ray</div>
+            <img src="https://images.pexels.com/photos/4031815/pexels-photo-4031815.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="COVID scans" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px" loading="lazy">
+            <p style="margin:8px 0;color:var(--muted)">A deep learning model trained to detect COVID-19 from chest scans. Includes preprocessing pipeline and evaluation metrics.</p>
+            <div class="actions"><a class="btn" href="#" onclick="openProject(event,0)">Details</a><a class="btn" href="https://github.com/salarsain" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+
+          <article class="card project fade-up" style="animation-delay:.12s">
+            <h3>Interactive Data Dashboard</h3>
+            <div class="meta">Python • Streamlit • Data Visualization</div>
+            <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Data dashboard" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px" loading="lazy">
+            <p style="margin:8px 0;color:var(--muted)">Interactive dashboards built with Streamlit for exploring datasets and visual analytics.</p>
+            <div class="actions"><a class="btn" href="#" onclick="openProject(event,1)">Details</a><a class="btn" href="https://github.com/salarsain" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+
+          <article class="card project fade-up" style="animation-delay:.18s">
+            <h3>Responsive Web Templates</h3>
+            <div class="meta">HTML • CSS • React</div>
+            <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Web templates" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px" loading="lazy">
+            <p style="margin:8px 0;color:var(--muted)">Modern responsive templates and small apps using React and vanilla JS for interactivity.</p>
+            <div class="actions"><a class="btn" href="#" onclick="openProject(event,2)">Details</a><a class="btn" href="https://github.com/salarsain" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+
+          <article class="card project fade-up" style="animation-delay:.24s">
+            <h3>ML Prediction Models</h3>
+            <div class="meta">Scikit-Learn • Regression • Classification</div>
+            <img src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Machine learning" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px" loading="lazy">
+            <p style="margin:8px 0;color:var(--muted)">Classical ML models for prediction tasks with cross-validation and feature engineering.</p>
+            <div class="actions"><a class="btn" href="#" onclick="openProject(event,3)">Details</a><a class="btn" href="https://github.com/salarsain" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="section-title">Contact</h2>
+        <div class="card contact-grid">
+          <div>
+            <p style="margin:0 0 8px">Interested in collaborating or offering an internship? Send me a message and I’ll reply soon.</p>
+            <p class="small">Email: <a href="mailto:salarsain2456@gmail.com">salarsain2456@gmail.com</a></p>
+            <p class="small">Location: Pakistan • Available for internships & remote work</p>
+
+            <div style="margin-top:14px;display:flex;gap:8px">
+              <a class="btn" href="https://github.com/salarsain" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/salar-ahmed-697a111a6/" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn" href="https://www.pdffiller.com/s/aBxQAlvG" id="resume" target="_blank" rel="noopener">View Resume</a>
+            </div>
+          </div>
+
+          <form id="contactForm" onsubmit="sendEmail(event)" aria-label="Contact form">
+            <label class="small">Name</label>
+            <input type="text" name="name" required aria-required="true" placeholder="Your name" />
+            <label class="small">Email</label>
+            <input type="email" name="email" required aria-required="true" placeholder="you@example.com" />
+            <label class="small">Message</label>
+            <textarea name="message" rows="5" required placeholder="Write your message"></textarea>
+            <button type="submit" class="cta">Send Message</button>
+            <div id="formStatus" role="status" aria-live="polite" style="margin-top:10px;color:var(--muted)"></div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© <strong>Salar Ahmed</strong> — Web Dev & Data Science</div>
+        <div class="small">Built with HTML, CSS & JS • Accessible • Responsive</div>
       </div>
-    </div>
-  </section>
-  <section id="education" aria-labelledby="education-title" tabindex="0">
-    <div class="container">
-      <h2 id="education-title">Education</h2>
-      <ul>
-        <li>
-          <strong>Bachelor of Science in Information Technology</strong><br />
-          Shah Latif University, 2021 - Present (3rd Year)<br />
-          Major: Web Development &amp; Software Engineering
-        </li>
-        <li>
-          <strong>Intermediate</strong><br />
-          Board of Intermediate and Secondary Education Sukkur, 2020 - 2022
-        </li>
-        <li>
-          <strong>Matriculation / Schooling</strong><br />
-          Board of Secondary Education Sukkur, 2018 - 2020
-        </li>
-      </ul>
-    </div>
-  </section>
-  <section id="contact" aria-labelledby="contact-title" tabindex="0">
-    <div class="container">
-      <h2 id="contact-title">Contact Me</h2>
-      <form id="contact-form" aria-label="Contact form to reach Salar Ahmed">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" aria-required="true" required placeholder="Your full name" />
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" aria-required="true" required placeholder="your.email@example.com" />
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" aria-required="true" required placeholder="Your message here"></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
-</main>
-<footer role="contentinfo">
-  <p>© 2024 Salar Ahmed. All rights reserved.</p>
-</footer>
-<script>
-  // Mobile menu toggle
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  mobileToggle.addEventListener('click', () => {
-    const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-    mobileToggle.setAttribute('aria-expanded', String(!expanded));
-    if (mobileMenu.hasAttribute('hidden')) {
-      mobileMenu.removeAttribute('hidden');
-      mobileMenu.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '0'));
-    } else {
-      mobileMenu.setAttribute('hidden', '');
-      mobileMenu.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
-    }
-  });
+    </footer>
 
-  // Smooth scroll highlight for nav links on page scroll
-  const navLinks = Array.from(document.querySelectorAll('nav.nav-desktop a'));
-  const sections = navLinks.map(link => {
-    const section = document.querySelector(link.getAttribute('href'));
-    return { link, section };
-  });
+  </div>
 
-  function onScroll() {
-    const scrollPos = window.scrollY + window.innerHeight / 3;
-    for (const {link, section} of sections) {
-      if (!section) continue;
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-      if (scrollPos >= top && scrollPos < bottom) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+  <!-- Project modal (simple) -->
+  <div id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px">
+    <div style="max-width:800px;width:100%;background:var(--card);border-radius:12px;padding:18px;box-shadow:0 20px 60px rgba(2,6,23,0.7)">
+      <button aria-label="Close project" onclick="closeModal()" style="float:right;background:transparent;border:0;color:var(--muted);font-weight:800">✕</button>
+      <div id="projectContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth nav + active link
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}))
+
+    // Mobile toggle
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    mobileToggle.addEventListener('click', ()=>{
+      let nav = document.querySelector('nav');
+      let expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', String(!expanded));
+      if(nav.style.display === 'flex') nav.style.display = 'none'; else nav.style.display = 'flex';
+      nav.style.flexDirection = 'column'; nav.style.position='absolute'; nav.style.right='36px'; nav.style.top='70px'; nav.style.background='var(--card)'; nav.style.padding='10px'; nav.style.borderRadius='10px';
+    })
+
+    // Simple project details content
+    const projects = [
+      {
+        title:'COVID-19 Detection (DL)',
+        content:`<h3>COVID-19 Detection (DL)</h3><p><strong>Stack:</strong> Python, Keras/TensorFlow, OpenCV</p><p>A convolutional neural network trained on X-Ray/CT datasets to detect signs of COVID-19. Includes data preprocessing, augmentation, training scripts, and evaluation (accuracy, precision, recall).</p>`
+      },
+      {
+        title:'Interactive Data Dashboard',
+        content:`<h3>Interactive Data Dashboard</h3><p><strong>Stack:</strong> Python, Streamlit, Pandas, Plotly</p><p>Dashboards built to explore datasets with filters, charts, and downloadable reports. Useful for exploratory data analysis and stakeholder demos.</p>`
+      },
+      {
+        title:'Responsive Web Templates',
+        content:`<h3>Responsive Web Templates</h3><p><strong>Stack:</strong> HTML, CSS, JavaScript, React</p><p>Modern, accessible templates optimized for mobile with smooth animations and component-based structure. Includes demo pages and reusable components.</p>`
+      },
+      {
+        title:'ML Prediction Models',
+        content:`<h3>ML Prediction Models</h3><p><strong>Stack:</strong> Scikit-Learn, Pandas, NumPy</p><p>Classical ML models including regression and classification with feature engineering, cross-validation, and performance reporting.</p>`
       }
-    }
-  }
-  window.addEventListener('scroll', onScroll);
+    ];
 
-  // Contact form submission (mock)
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Thank you for your message! I will get back to you shortly.');
-    contactForm.reset();
-  });
-</script>
+    function openProject(e,i){e.preventDefault();const m=document.getElementById('projectModal');document.getElementById('projectContent').innerHTML = projects[i].content + '<p style="margin-top:12px"><a class="btn" href="https://github.com/salarsain" target="_blank">View Code</a></p>';
+      m.style.display='flex';m.setAttribute('aria-hidden','false');}
+    function closeModal(){const m=document.getElementById('projectModal');m.style.display='none';m.setAttribute('aria-hidden','true');}
+
+    // Contact form - for demo we'll just show a success message (no backend)
+    function sendEmail(e){e.preventDefault();const status=document.getElementById('formStatus');status.textContent='Sending message...';setTimeout(()=>{status.textContent='Thanks — your message has been noted (demo). Please email directly to salarsain2456@gmail.com for real contact.'},800)}
+
+    // Reveal animations
+    document.addEventListener('DOMContentLoaded', ()=>{document.querySelectorAll('.fade-up').forEach((el,idx)=>{el.style.animationDelay = (idx*0.06)+'s';el.classList.add('fade-up')})});
+
+    // small keyboard accessibility: close modal with Escape
+    document.addEventListener('keydown', e=>{if(e.key==='Escape') closeModal()});
+  </script>
 </body>
 </html>
-
